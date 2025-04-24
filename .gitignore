@@ -19,3 +19,6 @@ __pycache__/
 .coverage
 htmlcov/
 .tox/
+
+# Database Files 
+app/Docker/postgis/data/*

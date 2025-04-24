@@ -31,6 +31,8 @@ clean-test:
 clean-all: clean-pyc clean-build clean-test
 	rm -rf .venv/
 	rm -rf venv/
+	rm -rf .ruff_cache/
+	rm -rf app/Docker/postgis/data/
 
 clean-files: clean-pyc clean-build clean-test
 	
