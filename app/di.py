@@ -1,6 +1,7 @@
 from app.config import Config
 from app.repository.connection import ConnectionFactory
 from app.repository.spatial_db.points import PointsRepository
+from app.repository.spatial_db.polygon import PolygonRepository
 from lagom import Container, Singleton
 from lagom.integrations.fast_api import FastApiIntegration
 from typing import TypeVar, Generic, Any, Type
@@ -35,9 +36,15 @@ class ContainerBuilder:
             return PointsRepository(
                 c[ConnectionFactory].connect("spatial_db", "spatial_data")
             )
+        
+        def _connect_polygon_repository(c: TypedContainer[Any]) -> PolygonRepository:
+            return PolygonRepository(
+                c[ConnectionFactory].connect("spatial_db", "spatial_data")
+            )
 
         container[ConnectionFactory] = Singleton(_create_connection_factory)
         container[PointsRepository] = Singleton(_connect_points_repository)
+        container[PolygonRepository] = Singleton(_connect_polygon_repository)
 
         return container
 
