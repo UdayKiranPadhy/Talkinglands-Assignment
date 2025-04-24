@@ -22,16 +22,25 @@ A backend API service for storing, updating, and retrieving spatial data (points
 .
 ├── app/                    # Application code
 │   ├── api/                # API endpoints
+│   │   ├── points.py       # Points API endpoints
+│   │   ├── polygons.py     # Polygons API endpoints
 │   ├── models/             # Database models
-│   ├── schemas/            # Pydantic schemas
+│   │   ├── point.py        # Point data model
+│   │   ├── polygon.py      # Polygon data model
+│   │   └── response.py     # Response data model
 │   ├── services/           # Business logic
-│   ├── database.py         # Database connection
-│   └── main.py             # Application entry point
+│   │   ├── point_service.py    # Point CRUD operations
+│   │   └── polygon_service.py  # Polygon CRUD operations
+│   ├── repository/         # Database connection and repository files for points and polygons
+│   └── main.py             # **Application entry point**
+|   └── di.py               # Dependency Injectory
+|   └── config.py           # Config of the Application
 ├── docker/                 # Docker configuration
+│   ├── postgis/           # Postgis initialization files
+│   │   └── init-postgis.sql # PostGIS initialization script
+│   └── python/              # Python initialization (if applicable)
 ├── docker-compose.yml      # Docker Compose configuration
-├── Dockerfile              # Dockerfile for the API service
 ├── pyproject.toml          # Project metadata and dependencies
-├── requirements.txt        # Python dependencies
 └── README.md               # Project documentation
 ```
 
@@ -47,7 +56,6 @@ A backend API service for storing, updating, and retrieving spatial data (points
 
 ```bash
 git clone <repository-url>
-cd spatial-data-platform
 ```
 
 2. Start the services using Docker Compose:
@@ -56,31 +64,38 @@ cd spatial-data-platform
 docker-compose up -d
 ```
 
-3. The API will be available at http://localhost:8000
+3. API documentation is available at http://localhost:8000/docs
 
-4. API documentation is available at http://localhost:8000/docs
+4. Run Apis by clicking on "Try it out".
+
 
 ## API Endpoints
 
 ### Points API
 
-- `GET /api/points` - Get all points
-- `GET /api/points/{id}` - Get a point by ID
-- `POST /api/points` - Create a new point
-- `PUT /api/points/{id}` - Update a point
-- `DELETE /api/points/{id}` - Delete a point
-- `GET /api/points/within` - Get points within a specified area
+#### Endpoints
 
-### Polygons API
+- `GET /points`: Retrieve points with latitude and longitude
+- `GET /points/{id}`: Retrieve a specific point by ID
+- `POST /points`: Create a new point
+- `PUT /points/{id}`: Update an existing point
+- `DELETE /points/{id}`: Delete a point
 
-- `GET /api/polygons` - Get all polygons
-- `GET /api/polygons/{id}` - Get a polygon by ID
-- `POST /api/polygons` - Create a new polygon
-- `PUT /api/polygons/{id}` - Update a polygon
-- `DELETE /api/polygons/{id}` - Delete a polygon
-- `GET /api/polygons/contains` - Get polygons that contain a specified point
-- `GET /api/polygons/intersects` - Get polygons that intersect with a specified polygon
+### Polygon API
 
-## License
+#### Endpoints
+- `GET /polygons/{id}`: Retrieve a specific polygon by ID
+- `POST /polygons`: Create a new polygon
+- `PUT /polygons/{id}`: Update an existing polygon
+- `DELETE /polygons/{id}`: Delete a polygon
 
-MIT
+#### Screenshots
+
+![Swagger and Open Api](assets/Swagger.png)
+
+![ReDoc](assets/ReDoc.png)
+
+
+### Demo
+
+![Screen Recording](assets/Recording.mov)

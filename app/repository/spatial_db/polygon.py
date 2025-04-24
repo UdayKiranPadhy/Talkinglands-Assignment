@@ -60,6 +60,7 @@ class PolygonRepository:
                 json.dumps(polygon.get_Geo_Json())
             ))
             result = cursor.fetchone()
+            self.conn.commit()
             if result:
                 polygon_geometry = self._convert_geojson_to_list(result['geometry'])
                 result['coordinates'] = polygon_geometry
@@ -83,6 +84,7 @@ class PolygonRepository:
                 polygon_id
             ))
             result = cursor.fetchone()
+            self.conn.commit()
             if result:
                 polygon_geometry = self._convert_geojson_to_list(result['geometry'])
                 result['coordinates'] = polygon_geometry
