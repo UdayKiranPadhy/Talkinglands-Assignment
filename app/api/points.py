@@ -79,7 +79,7 @@ async def delete_point(
 
     return JSONResponse(
         status_code=HTTPStatus.OK,
-        content=Response[None]
+        content=Response[str]
         .success_response("Point deleted successfully")
         .dict(by_alias=True),
     )
