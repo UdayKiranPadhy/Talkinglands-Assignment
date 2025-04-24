@@ -33,7 +33,7 @@ async def get_point_based_on_latitude_and_longitude(
     if not point:
         return JSONResponse(
             status_code=HTTPStatus.NOT_FOUND,
-            content=Response[None].error_response("Hub not found").dict(by_alias=True),
+            content=Response[None].error_response("Point not found").dict(by_alias=True),
         )
 
     return JSONResponse(

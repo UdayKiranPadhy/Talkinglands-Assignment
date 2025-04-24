@@ -36,6 +36,6 @@ class ConnectionFactory:
 
         # Set schema if provided via options parameter
         if schema:
-            conn_params["options"] = f"-c search_path={schema}"
-
+            conn_params["options"] = f"-c search_path={schema},public"
+        
         return psycopg2.connect(**conn_params)
