@@ -1,7 +1,7 @@
 from typing import NewType
 from pydantic import BaseModel, Field
 
-PointId = NewType("PointId", str)
+PointId = NewType("PointId", int)
 Latitude = NewType("Latitude", float)
 Longitude = NewType("Longitude", float)
 

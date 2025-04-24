@@ -1,11 +1,12 @@
 -- Connect to the spatial_db database
 \c spatial_db;
 
--- Enable PostGIS extensions
-CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- Create a new schema for spatial data
 CREATE SCHEMA IF NOT EXISTS spatial_data;
+
+-- Enable PostGIS extensions
+CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- Create a sample spatial table in the new schema
 CREATE TABLE spatial_data.points (
